@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+  dataSourceDespesas: any[] = [];
+  dataSourceReceitas: any[] = [];
+  displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
+
 }

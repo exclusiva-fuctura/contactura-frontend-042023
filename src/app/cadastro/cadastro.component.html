@@ -1,2 +1,59 @@
-<br><br><br><br>
-<p>cadastro works!</p>
+<div class="container-bg">
+  <mat-grid-list cols="4" rowHeight="180px">
+    <mat-grid-tile colspan="4" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="3">
+      <div class="container">
+        <!-- formulario -->
+        <form novalidate>
+          <div class="child">
+            <mat-icon aria-hidden="false" class="large-size-icon">person</mat-icon>
+          </div>
+          <div class="child">
+            <h2>Cadastro</h2>
+          </div>
+          <div class="child">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Nome</mat-label>
+              <input matInput placeholder="nome e sobrenome" >
+            </mat-form-field>
+          </div>
+          <div class="child">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>E-mail</mat-label>
+              <input matInput placeholder="meuemail@email.com" >
+            </mat-form-field>
+          </div>
+          <div class="child">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>telefone</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </div>
+          <div class="child">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Senha</mat-label>
+              <input matInput type="password" >
+            </mat-form-field>
+          </div>
+          <div class="child">
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Confirme Senha</mat-label>
+              <input matInput type="password" >
+            </mat-form-field>
+          </div>
+
+          <div class="child">
+            <button mat-raised-button color="primary" >Cadastrar</button>
+            <button mat-raised-button color="secundary">Sair</button>
+          </div>
+
+        </form>
+        <!-- formulario -->
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="4" rowspan="1" ></mat-grid-tile>
+  </mat-grid-list>
+</div>

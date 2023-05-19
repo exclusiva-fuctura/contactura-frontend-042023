@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'relatorio/despesa', component: DespesasComponent },
   { path: 'relatorio/receita', component: ReceitasComponent },
+  { path: 'lancamentos', loadChildren: () => import('./lancamentos/lancamentos.module').then(m => m.LancamentosModule) },
   { path: '**', component: PageNotFoundComponent },
 ];
 

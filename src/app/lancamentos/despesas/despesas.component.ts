@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class DespesasComponent {
 
+  /**
+   * listagem dos tipos
+   */
+  get tipos(): string[] {
+    return ['Alimentação','Habitação','Transporte','Educação','Lazer','Viagem'];
+  }
 }

@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DespesasComponent {
 
+  dataSource: any[] = [];
+  displayedColumns = ['data','valor','tipo','fixo','descricao','acoes'];
+
 }
