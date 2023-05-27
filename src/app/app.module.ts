@@ -14,6 +14,7 @@ import { ReceitasComponent } from './relatorios/receitas/receitas.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserAnimationsModule,
     SharedModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

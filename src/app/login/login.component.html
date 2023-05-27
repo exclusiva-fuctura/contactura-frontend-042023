@@ -5,7 +5,7 @@
     <mat-grid-tile colspan="2" rowspan="2">
       <div class="container">
         <!-- formulario -->
-        <form novalidate>
+        <form [formGroup]="formulario" novalidate>
           <div class="imagem child">
             <mat-icon aria-hidden="false">lock_person</mat-icon>
           </div>
@@ -22,7 +22,7 @@
             </mat-form-field>
           </div>
           <div class="child">
-            <button mat-raised-button color="primary" >Entrar</button>
+            <button mat-raised-button color="primary" (click)="onEntrar()" [disabled]="formulario.invalid">Entrar</button>
           </div>
           <div class="child">
 
