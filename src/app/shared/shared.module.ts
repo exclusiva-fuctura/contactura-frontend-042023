@@ -13,6 +13,7 @@ import { AutenticadorService } from './services/autenticador.service';
 import { MenuComponent } from './components/menu/menu.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [
   MenuComponent,
@@ -29,7 +30,8 @@ const components = [
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
   ],
   providers: [
     DaoService,

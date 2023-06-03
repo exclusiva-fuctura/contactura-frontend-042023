@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   formulario!: FormGroup;
+  showLoading = false;
 
   constructor(
     private router: Router,
@@ -26,6 +27,11 @@ export class LoginComponent {
   }
 
   onEntrar(): void {
+    this.showLoading = true;
     this.router.navigate(['/dashboard']);
+  }
+
+  onCadastro(): void {
+    this.router.navigate(['cadastro']);
   }
 }

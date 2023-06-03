@@ -15,6 +15,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AppState } from './app.state';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AppState],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

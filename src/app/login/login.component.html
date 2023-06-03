@@ -22,7 +22,7 @@
             </mat-form-field>
           </div>
           <div class="child">
-            <button mat-raised-button color="primary" (click)="onEntrar()" [disabled]="formulario.invalid">Entrar</button>
+            <button mat-raised-button color="primary" class="button" (click)="onEntrar()" [disabled]="formulario.invalid">Entrar</button>
           </div>
           <div class="child">
 
@@ -39,4 +39,4 @@
   </mat-grid-list>
 </div>
 <!-- loading -->
-<app-loading></app-loading>
+<app-loading [show]="showLoading"></app-loading>
