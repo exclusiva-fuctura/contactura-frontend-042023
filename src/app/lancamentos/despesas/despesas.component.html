@@ -6,7 +6,7 @@
   <app-logout></app-logout>
 
   <h1>CADASTRO DE DESPESAS</h1>
-  <form  novalidate>
+  <form [formGroup]="formulario" novalidate>
     <mat-grid-list cols="3" rowHeight="3:1">
       <mat-grid-tile class="coluna">
         <mat-form-field appearance="fill">
@@ -48,8 +48,8 @@
       </mat-grid-tile>
       <!-- linha 3 -->
       <mat-grid-tile class="coluna botoes" colspan="3">
-          <button mat-raised-button >Limpar</button>
-          <button mat-raised-button color="primary" >Salvar</button>
+        <button mat-raised-button (click)="onLimpar()">Limpar</button>
+        <button mat-raised-button color="primary" (click)="onSalvar()" [disabled]="formulario.invalid">{{buttonLabel}}</button>
       </mat-grid-tile>
     </mat-grid-list>
   </form>

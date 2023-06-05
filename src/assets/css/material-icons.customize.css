@@ -5,3 +5,11 @@
   height: 48px !important;
   line-height: 48px;
 }
+
+.div-table {
+  padding: 0 20px;
+}
+
+.no-data {
+  padding: 10px 0 15px 15px;
+}

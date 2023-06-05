@@ -57,6 +57,17 @@ export class LancamentosService {
     return this.dao.post<ILancamento>(AppSettings.API_LANCAMENTOS,
       this.despesaToLancamento(despesa), DaoService.MEDIA_TYPE_APP_JSON);
   }
+
+  /**
+   * criar uma nova receita
+   * @param receita instancia de uma receita
+   * @returns retorna objeto lancamento criada
+   */
+  criarReceita(receita: IReceita): Observable<HttpResponse<ILancamento>> {
+    return this.dao.post<ILancamento>(AppSettings.API_LANCAMENTOS,
+      this.receitaToLancamento(receita), DaoService.MEDIA_TYPE_APP_JSON);
+  }
+
   /**
    * atualiza uma despesa existente
    * @param despesa instancia de uma despesa
@@ -66,6 +77,17 @@ export class LancamentosService {
     return this.dao.put<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${despesa.id}`,
     this.despesaToLancamento(despesa), DaoService.MEDIA_TYPE_APP_JSON);
   }
+
+  /**
+   * atualiza uma receita existente
+   * @param receita instancia de uma receita
+   * @returns retorna objeto lancamento alterada
+   */
+  atualizarReceita(receita: IReceita): Observable<HttpResponse<ILancamento>> {
+    return this.dao.put<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${receita.id}`,
+    this.receitaToLancamento(receita), DaoService.MEDIA_TYPE_APP_JSON);
+  }
+
   /**
    * listar despesas criadas
    * @returns retorna lista de lancamentos
@@ -73,6 +95,7 @@ export class LancamentosService {
   listaLancamentos(): Observable<HttpResponse<ILancamento[]>> {
     return this.dao.get<ILancamento[]>(AppSettings.API_LANCAMENTOS, DaoService.MEDIA_TYPE_APP_JSON);
   }
+
   /**
    * recupera a despesa do id informado
    * @param despesa instancia de uma despesa
@@ -81,6 +104,16 @@ export class LancamentosService {
   obterDespesa(despesa: IDespesa): Observable<HttpResponse<ILancamento>> {
     return this.dao.get<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${despesa.id}`, DaoService.MEDIA_TYPE_APP_JSON);
   }
+
+  /**
+   * recupera a receita do id informado
+   * @param receita instancia de uma receita
+   * @returns retorna objeto lancamento
+   */
+  obterReceita(receita: IReceita): Observable<HttpResponse<ILancamento>> {
+    return this.dao.get<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${receita.id}`, DaoService.MEDIA_TYPE_APP_JSON);
+  }
+
   /**
    * reove uma despesa existe
    * @param despesa instancia de uma despesa
@@ -88,6 +121,15 @@ export class LancamentosService {
    */
   removerDespesa(despesa: IDespesa): Observable<HttpResponse<ILancamento>> {
     return this.dao.delete<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${despesa.id}`, DaoService.MEDIA_TYPE_APP_JSON);
+  }
+
+  /**
+   * reove uma receita existe
+   * @param receita instancia de uma receita
+   * @returns retorna objeto lancamento removida
+   */
+  removerReceita(receita: IReceita): Observable<HttpResponse<ILancamento>> {
+    return this.dao.delete<ILancamento>(`${AppSettings.API_LANCAMENTOS}/${receita.id}`, DaoService.MEDIA_TYPE_APP_JSON);
   }
 
   /**

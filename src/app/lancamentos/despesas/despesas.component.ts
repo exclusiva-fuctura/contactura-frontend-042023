@@ -1,6 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { MenuTypeEnum } from 'src/app/shared/enums/menu-type.enum';
 import { IDespesa } from 'src/app/shared/models/despesa.interface';
@@ -20,13 +21,20 @@ export class DespesasComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private menuService: MenuService,
+    private activatedRoute: ActivatedRoute,
     private lancamentosService: LancamentosService
   ) { }
 
   ngOnInit(): void {
     this.menuService.ondeEstou = MenuTypeEnum.LANCAMENTO_DESPESA;
     this.iniciarFormulario();
-    this.verificarModoEdicao();
+
+    const id = this.activatedRoute.snapshot.params['id'];
+    if (id) {
+      this.verificarModoEdicao();
+    } else {
+      this.lancamentosService.modoEdicao = false;
+    }
   }
 
   /**
@@ -49,11 +57,11 @@ export class DespesasComponent implements OnInit {
   private iniciarFormulario(): void {
     const hoje = moment().format();
     this.formulario = this.formBuilder.group({
-      tipo: '',
+      tipo: ['', Validators.required],
       ehFixo: false,
       data: hoje,
-      descricao: '',
-      valor: ''
+      descricao: ['', Validators.required],
+      valor: ['', Validators.required]
     });
   }
 
@@ -97,11 +105,17 @@ export class DespesasComponent implements OnInit {
           `Despesa criada com sucesso. Código: '${despesaStored?.id}'`,
           'success'
           );
+        // limpar os campos do formulario
+        this.onLimpar();
       },
       error: (err: HttpErrorResponse) => {
+        let msg = err.error.error;
+        if (err.status === HttpStatusCode.BadRequest && err.error.error.includes('Bad Request')) {
+          msg = 'Usuario não autenticado';
+        }
         Swal.fire(
           'ALERTA: Criar Despesa',
-          err.error.mensagem ? err.error.mensagem : 'Ocorreu um erro inesperado. [ ' + err.error.error + ' ]',
+          err.error.mensagem ? err.error.mensagem : 'Ocorreu um erro inesperado. [ ' + msg + ' ]',
           'warning'
           );
       }
@@ -147,6 +161,7 @@ export class DespesasComponent implements OnInit {
     despesa.data = moment(despesa.data).format('YYYY-MM-DD');
     // verificar se o formulário esta em modo de edição
     if (this.lancamentosService.modoEdicao) {
+      despesa.id = this.lancamentosService.despesaSelecionada.id;
       this.atualizar(despesa);
     } else {
       this.salvar(despesa);
@@ -158,5 +173,9 @@ export class DespesasComponent implements OnInit {
    */
   onLimpar(): void {
     this.formulario.reset();
+    this.formulario.patchValue({
+      data: moment().format(),
+      ehFixo: false
+    });
   }
 }
