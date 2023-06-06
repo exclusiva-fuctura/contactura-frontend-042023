@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent, canActivate: [AutenticadorGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AutenticadorGuard] },
-  { path: 'relatorio-despesa', component: DespesasComponent },
-  { path: 'relatorio-receita', component: ReceitasComponent },
+  { path: 'relatorio-despesa', component: DespesasComponent, canActivate: [AutenticadorGuard] },
+  { path: 'relatorio-receita', component: ReceitasComponent, canActivate: [AutenticadorGuard] },
   { path: 'lancamentos', loadChildren: () => import('./lancamentos/lancamentos.module').then(m => m.LancamentosModule) },
   { path: '**', component: PageNotFoundComponent },
 ];

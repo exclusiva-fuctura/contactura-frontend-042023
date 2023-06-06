@@ -7,7 +7,7 @@
 
   <h1>RELATÓRIO DE DESPESAS</h1>
   <br>
-  <form novalidate>
+  <form [formGroup]="formulario" novalidate>
     <mat-grid-list cols="4" rowHeight="4:1">
       <mat-grid-tile class="coluna"></mat-grid-tile>
       <mat-grid-tile class="coluna"></mat-grid-tile>
@@ -15,12 +15,12 @@
       <mat-grid-tile class="coluna">
         <mat-form-field appearance="fill">
           <mat-label>Data da Despesa</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput [matDatepicker]="picker" formControlName="data">
           <mat-hint>DD/MM/AAAA</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="btn-search">
+        <button mat-raised-button color="primary" class="btn-search" (click)="onPequisar()">
           <mat-icon aria-hidden="false" matTooltip="Filtrar">search</mat-icon>
         </button>
       </mat-grid-tile>
@@ -34,14 +34,14 @@
       <ng-container matColumnDef="data">
         <th mat-header-cell *matHeaderCellDef>Data </th>
         <td mat-cell *matCellDef="let element"> {{element.data | date:'dd-MM-yyyy'}}</td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
+        <td mat-footer-cell *matFooterCellDef> <strong>Total</strong> </td>
       </ng-container>
 
       <!-- Valor Column -->
       <ng-container matColumnDef="valor">
         <th mat-header-cell *matHeaderCellDef>Valor </th>
-        <td mat-cell *matCellDef="let element">{{element.valor | currency:'BRL':'symbol':'0.2-2'}}</td>
-        <td mat-footer-cell *matFooterCellDef> {{0 | currency:'BRL':'symbol':'0.2-2'}} </td>
+        <td mat-cell *matCellDef="let element">{{element.valor | currency}}</td>
+        <td mat-footer-cell *matFooterCellDef> <strong>{{valorTotal | currency}}</strong> </td>
       </ng-container>
 
       <!-- Tipo Column -->

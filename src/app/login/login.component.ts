@@ -28,7 +28,7 @@ export class LoginComponent {
 
   private initFormulario(): void {
     this.formulario = this.formBuilder.group({
-      email: ['', [Validators.required ,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
